@@ -22,7 +22,7 @@ interface Topic {
 const UpdateProfile = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [interested_topics, setInterested_topics] = useState<string[]>([])
+  const [interested_topics, setInterested_topics] = useState<number[]>([])
   const [isLoading, setIsLoading] = useState(false);
   const { getToken } = AuthActions();
   const [topics, setTopics] = useState<Topic[]>([]);
@@ -70,20 +70,37 @@ const UpdateProfile = () => {
     fetchTopics();
   }, [getToken]);
   
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+  // const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+  //   const isChecked = event.target.checked;
+  //   const newTopics = [...interested_topics];
+  //   if (isChecked){
+  //     newTopics.push(event.target.id);
+  //   }
+  //   else{
+  //     const index = newTopics.indexOf(event.target.id);
+  //     newTopics.splice(index,1);
+  //   }
+  //   setInterested_topics(newTopics)
+  // };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
+    const topicID = parseInt(event.target.id, 10); // Convert ID to integer
     const newTopics = [...interested_topics];
-    if (isChecked){
-      newTopics.push(event.target.id);
+  
+    if (isChecked) {
+      if (!newTopics.includes(topicID)) { // Only add if not already included
+        newTopics.push(topicID);
+      }
+    } else {
+      const index = newTopics.indexOf(topicID);
+      if (index > -1) {
+        newTopics.splice(index, 1); // Remove the topic if it exists
+      }
     }
-    else{
-      const index = newTopics.indexOf(event.target.id);
-      newTopics.splice(index,1);
-    }
-    setInterested_topics(newTopics)
+  
+    setInterested_topics(newTopics);
   };
-
-
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
