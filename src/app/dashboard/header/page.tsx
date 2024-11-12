@@ -19,11 +19,11 @@ function Header() {
   const { logout, removeTokens } = AuthActions();
 
   const handleBooking = () => {
-    router.push("updateProfile")
+  
   }
 
   const handleProfile = () => {
-    router.push("profile");
+    router.push("updateProfile");
   }
 
   const handleLogout = () => {
