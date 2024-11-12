@@ -23,7 +23,7 @@ function Header() {
   }
 
   const handleProfile = () => {
-    router.push("updateProfile");
+    router.push("profile");
   }
 
   const handleLogout = () => {
