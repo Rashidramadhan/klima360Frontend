@@ -32,7 +32,7 @@ export default function Dashboard() {
         const data = await response.json();
         setTrainings(data.available_trainings);
         setInterested_topics(data.training_schedules)
-      
+        console.log(data, '************************')
         
       } catch (error) {
         console.error('Error fetching training schedules:', error);
