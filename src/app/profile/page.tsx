@@ -28,7 +28,7 @@ const router = useRouter()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://zero-to-one-4.onrender.com/intrestedTopics/', {
+        const response = await fetch('https://zero-to-one-4.onrender.com/topics/', {
           method: "GET",
         });
         const data = await response.json();

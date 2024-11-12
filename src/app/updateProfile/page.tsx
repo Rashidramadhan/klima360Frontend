@@ -38,7 +38,7 @@ const UpdateProfile = () => {
           console.error('User email not found');
           return;
         }
-        const response = await fetch(`https://zero-to-one-4.onrender.com/profile-UserUpdate/?email=${userEmail}`, {
+        const response = await fetch(`https://zero-to-one-4.onrender.com/api/profileUserDetails/?email=${userEmail}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,6 @@ const UpdateProfile = () => {
         });
         const data = await response.json();
         setUser(data);
-        console.log(data,'--------updated---------')
       } catch (error) {
         console.error('Error fetching topics:', error);
       }
@@ -58,7 +57,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     const fetchTopics = async () => {
       try {
-        const response = await fetch('http://localhost:8000/intrestedTopics/', {
+        const response = await fetch('http://localhost:8000/topics/', {
           method: "GET",
         });
         const data = await response.json();
@@ -115,7 +114,6 @@ const UpdateProfile = () => {
       setIsLoading(false);
     }
   };
-console.log(user, '-------------user Data------')
   return (
     <div className="px-4 py-4 bg-green-200 text-gray-900 antialiased items-center">
       <form className="flex w-full max-w-lg items-center" onSubmit={handleSubmit}>
