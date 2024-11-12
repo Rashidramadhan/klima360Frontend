@@ -30,6 +30,7 @@ export default function Dashboard() {
           }
         });
         const data = await response.json();
+        console.log(data, '*************************')
         setTrainings(data.available_trainings);
         setInterested_topics(data.training_schedules)
       
