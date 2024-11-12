@@ -66,7 +66,7 @@ const router = useRouter()
     // const { getToken } = AuthActions()
     // const token = getToken('access')
     console.log(user_profile, '-------------------------')
-    const res = await fetch('http://localhost:8000/profile/', {
+    const res = await fetch('https://zero-to-one-4.onrender.com/profile/', {
       method: "POST",
       headers: {
         // "Authorization": `Bearer ${token}`,

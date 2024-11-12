@@ -57,7 +57,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     const fetchTopics = async () => {
       try {
-        const response = await fetch('http://localhost:8000/topics/', {
+        const response = await fetch('https://zero-to-one-4.onrender.com/topics/', {
           method: "GET",
         });
         const data = await response.json();
