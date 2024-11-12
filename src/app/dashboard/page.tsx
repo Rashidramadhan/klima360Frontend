@@ -41,6 +41,7 @@ export default function Dashboard() {
     };
   
     fetchData();
+  console.log(fetchData, '&&&&&&&&&&&&&&&&&&&&&&')
   }, [getToken]);
 
   
