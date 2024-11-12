@@ -31,7 +31,7 @@ const Login = () => {
       .json((json) => {
         storeToken(json.access, "access");
         storeToken(json.refresh, "refresh");
-      
+        localStorage.setItem('userEmail', data.email)
         toast.success("Login Successful!");
         router.push("dashboard");
       })
