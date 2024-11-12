@@ -57,7 +57,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     const fetchTopics = async () => {
       try {
-        const response = await fetch('https://zero-to-one-4.onrender.com/topics/', {
+        const response = await fetch('https://zero-to-one-4.onrender.com/topic/', {
           method: "GET",
         });
         const data = await response.json();
@@ -91,7 +91,7 @@ const UpdateProfile = () => {
 
     try {
       const token = getToken('access');
-      const response = await fetch('http://localhost:8000/profile/', {
+      const response = await fetch('https://zero-to-one-4.onrender.com/profile/', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
