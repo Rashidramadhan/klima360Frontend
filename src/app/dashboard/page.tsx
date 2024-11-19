@@ -1,4 +1,3 @@
-
 "use client";
 // import Image from "next/image";
 // import farming from "@/app/farming.jpeg";
@@ -23,7 +22,7 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const token = getToken('access')
-        const response = await fetch('https://zero-to-one-4.onrender.com/dashboard/', {
+        const response = await fetch('http://localhost:8000/dashboard/', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -32,7 +31,7 @@ export default function Dashboard() {
         const data = await response.json();
         setTrainings(data.available_trainings);
         setInterested_topics(data.training_schedules)
-        console.log(data, '************************')
+      
         
       } catch (error) {
         console.error('Error fetching training schedules:', error);
@@ -49,67 +48,66 @@ export default function Dashboard() {
   };
   
   return (
-    <div className="container grid-rows-2 grid-flow-row bg-green-200 border-separate">
-      <div className="bg-emerald-200 py-1 px-1 ">
-      <h2 className="text-3xl font-bold text-sky-900 items-center mb-2">
+    <section id="dashboard" className="max-container max-sm:mt-12 bg-green-200 border-separate">
+      <div className=" py-1 px-1 ">
+      <h2 className="text-3xl font-palanquin font-bold text-sky-900 items-center mb-2">
                       My Intrested Topics
                   </h2>
-      {interested_topics.map((interested_topic: {
+      {/* {interested_topics.map((interested_topic: {
+                        id: string | undefined; topic: string, title: string, description: string, start_time: string
+
+}) => ( */}
+  <div  className="mt-10 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-col-2 grid-cols-1 sm:gap-2 gap-10">
+    {interested_topics.map((interested_topic: {
                         id: string | undefined; topic: string, title: string, description: string, start_time: string
 
 }) => (
-  <div key={interested_topic.id} className="max-w-sm w-full lg:max-w-full lg:flex bg-green-300">
-  <div className="rounded-b lg:rounded-b-none lg:rounded-r p-4 justify-between">
-    <div className="grid grid-cols-3 border-green-400 auto-cols-fr mb-1">
-      {/* <h2 className="text-lg font-semibold text-white uppercase dark:text-white">
-        { interested_topic.topic }
-      </h2> */}
-      <div className="text-green-900 font-bold text-xl mb-2">{ interested_topic.title}</div>
-      <p className="text-green-700 text-base mb-2 line-clamp-6">{ interested_topic.description }</p>
+  <div key={interested_topic.id} className="border-2 border-cyan-300 rounded-lg px-2 py-2 bg-green-400">
+      <div  className="text-green-900 font-bold text-xl">{ interested_topic.title}</div>
+      <p className="text-green-700 text-base line-clamp-4">{ interested_topic.description }</p>
       <div className="flex items-center mb-2 px-2 py-2">
       <div className="text-sm font-bold">
       <p className="text-red-400 mb-2">Start Date: { interested_topic.start_time }</p>
-        <button className="border-2 border-green-600 rounded-full px-8 py-2 inline-block font-semibold hover:bg-green-600
-                     hover:text-white text-green-900" onClick={() => handleTrainingClick(interested_topic.id)}>Enroll Training</button>
+        <button className="border-2 border-green-600 rounded-full px-8 py-2 inline-block font-semibold
+         hover:bg-green-600 hover:text-white text-green-900" 
+         onClick={() => handleTrainingClick(interested_topic.id)}>Enroll Training</button>
         
-      </div>
     </div>
     </div>
+    </div>
+    ))}
     
-  </div>
 </div>
-))}
       </div>
-          <div className="bg-teal-300 py-1 px-1">
-          <h2 className="text-3xl font-bold text-sky-950 mb-2">
-                      Available Topics
+
+      <div className=" py-1 px-1 ">
+      <h2 className="text-3xl font-palanquin font-bold text-sky-900 items-center mb-2">
+                        Available Topics
                   </h2>
-      {trainings.map((training: {
+  <div  className="mt-6 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-col-2 grid-cols-1 sm:gap-2 gap-10 ">
+    {trainings.map((training: {
                         id: string | undefined; topic: string, title: string, description: string, start_time: string
 
 }) => (
-  <div key={training.id} className="max-w-sm w-full lg:max-w-full lg:flex">
-  <div className="rounded-b lg:rounded-b-none lg:rounded-r p-4 justify-between">
-    <div className="grid grid-cols-3 border-green-400 auto-cols-fr mb-1">
-      {/* <h2 className="text-lg font-semibold text-white uppercase dark:text-white">
-        { interested_topic.topic }
-      </h2> */}
-      <div className="text-green-900 font-bold text-xl mb-2">{ training.title}</div>
+  <div key={training.id} className="border-2 border-cyan-300 rounded-lg px-2 py-2 bg-green-300">
+      <div  className="text-green-900 font-bold text-xl">{ training.title}</div>
       {/* <p className="text-green-700 text-base mb-2 line-clamp-1">{ training.description }</p> */}
-      <div className="flex items-center mb-2 px-4 py-2">
+      <div className="flex items-center mb-2 px-2 py-2">
       <div className="text-sm font-bold">
       <p className="text-red-400 mb-2">Start Date: { training.start_time }</p>
-        <button className="border-2 border-green-600 rounded-full px-8 py-2 inline-block font-semibold hover:bg-green-600
-                     hover:text-white text-green-900" onClick={() => handleTrainingClick(training.id)}>Enroll Training</button>
+        <button className="border-2 border-green-600 rounded-full px-8 py-2 inline-block font-semibold
+         hover:bg-green-600 hover:text-white text-green-900" 
+         onClick={() => handleTrainingClick(training.id)}>Enroll Training</button>
         
-      </div>
     </div>
     </div>
+    </div>
+    ))}
     
-  </div>
 </div>
-))}
-          </div>
-</div>
+      </div>
+          
+</section>
   );
 };
+
