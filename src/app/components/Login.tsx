@@ -31,7 +31,7 @@ const Login = () => {
       .json((json) => {
         storeToken(json.access, "access");
         storeToken(json.refresh, "refresh");
-        localStorage.setItem('userEmail', data.email)
+      
         toast.success("Login Successful!");
         router.push("dashboard");
       })
@@ -61,10 +61,10 @@ const Login = () => {
         }
       });
   };
-  return <div className="grow flex flex-col items-center  bg-green-200 justify-center min-h-screen py-2">
-  <main className="grow flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-      <div className="bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl">
-          <div className="grow flex w-3/5 p-5">
+  return <div className="flex items-center  bg-green-200 justify-center min-h-screen py-2">
+  <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+      <div className="flex justify-between  max-lg:flex-col bg-white rounded-2xl shadow-2xl  w-2/3">
+          <div className="flex flex-1  p-5">
               <div className="text-left font-bold">
                   <span className="text-green-600">
                       <Image src={logo} alt="Company logo" width={120} height={120} placeholder="blur"/>
@@ -116,8 +116,8 @@ const Login = () => {
               
           </div>
           
-          <div className="w-2/5 bg-green-700 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12">
-              <h2 className="text-3xl font-bold mb-2">Welcome to Zero-to-One</h2>
+          <div className="flex-1  bg-green-700 text-white rounded-tr-2xl rounded-br-2xl py-24 px-8">
+              <h2 className="grow text-3xl font-bold mb-2">Welcome to Zero-to-One</h2>
               <div className="border-2 w-10 border-white inline-block mb-2"></div>
               <p className="mb-2">Create an account and start the journey with Us.</p>
               <Link href="/auth/register" className="border-2 border-white rounded-full px-8 py-2 inline-block font-semibold hover:bg-white
@@ -131,3 +131,4 @@ const Login = () => {
 };
 
 export default Login;
+
